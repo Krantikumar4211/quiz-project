@@ -2,13 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+
 function App() {
   const [quizId, setQuizId] = useState(1);
   const [questions, setQuestions] = useState([]);
 
   const loadQuiz = async () => {
     try {
-      const res = await axios.get(`http://localhost:4242/quiz/get/${quizId}`);
+      const API = import.meta.env.VITE_API_URL;
+      axios.get(`${API}/quiz/get/${quizId}`);
       setQuestions(res.data);
     } catch (error) {
       alert("❌ Quiz not found!");
